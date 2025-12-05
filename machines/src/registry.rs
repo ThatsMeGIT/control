@@ -1,3 +1,4 @@
+use crate::analog_input_test_machine::AnalogInputTestMachine;
 #[cfg(feature = "mock-machine")]
 use crate::{
     extruder1::mock::ExtruderV2 as ExtruderV2Mock1, extruder2::mock::ExtruderV2 as ExtruderV2Mock2,
@@ -5,7 +6,7 @@ use crate::{
 };
 
 use crate::{
-    Machine, MachineNewParams, analog_input_test_machine::AnalogInputTestMachine,
+    EtherCATMachine, EtherCATParams, Machine,
     machine_identification::MachineIdentification,
 };
 
@@ -25,7 +26,7 @@ use anyhow::Error;
 use std::{any::TypeId, collections::HashMap};
 
 pub type MachineNewClosure =
-    Box<dyn Fn(&MachineNewParams) -> Result<Box<dyn Machine>, Error> + Send + Sync>;
+    Box<dyn Fn(&EtherCATParams) -> Result<Box<dyn Machine>, Error> + Send + Sync>;
 
 pub struct MachineRegistry {
     type_map: HashMap<TypeId, (MachineIdentification, MachineNewClosure)>,
@@ -44,7 +45,7 @@ impl MachineRegistry {
         }
     }
 
-    pub fn register<T: Machine + 'static>(
+    pub fn register<T: EtherCATMachine + 'static>(
         &mut self,
         machine_identficiation: MachineIdentification,
     ) {
@@ -60,7 +61,7 @@ impl MachineRegistry {
 
     pub fn new_machine(
         &self,
-        machine_new_params: &MachineNewParams,
+        machine_new_params: &EtherCATParams,
     ) -> Result<Box<dyn Machine>, anyhow::Error> {
         // get machiine identification
         let device_identification =
