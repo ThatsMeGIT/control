@@ -8,7 +8,7 @@ use ethercat_hal::{
 use smol::{block_on, channel::unbounded};
 
 use crate::{
-    MachineNewHardware, EtherCATParams, EtherCATMachine,
+    EtherCATMachine, EtherCATParams, MachineNewHardware,
     analog_input_test_machine::{AnalogInputTestMachine, api::AnalogInputTestMachineNamespace},
     get_ethercat_device, validate_no_role_dublicates, validate_same_machine_identification_unique,
 };

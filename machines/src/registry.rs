@@ -6,8 +6,7 @@ use crate::{
 };
 
 use crate::{
-    EtherCATMachine, EtherCATParams, Machine,
-    machine_identification::MachineIdentification,
+    EtherCATMachine, EtherCATParams, Machine, machine_identification::MachineIdentification,
 };
 
 #[cfg(not(feature = "mock-machine"))]
