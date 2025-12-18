@@ -462,9 +462,7 @@ export const rootTree = RootRoute.addChildren([
         mock1PresetsRoute,
       ]),
 
-      wagoPower1SerialRoute.addChildren([
-          wagoPower1ControlRoute
-      ]),
+      wagoPower1SerialRoute.addChildren([wagoPower1ControlRoute]),
 
       buffer1SerialRoute.addChildren([buffer1ControlRoute]),
     ]),
